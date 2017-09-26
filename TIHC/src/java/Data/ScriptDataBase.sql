@@ -1,6 +1,6 @@
 -- username: root
 -- pass: 12345
--- drop database TIHC;
+ drop database TIHC;
 create database TIHC;
 
 use TIHC;
@@ -92,7 +92,16 @@ constraint barco2_fk foreign key(cod_barco) references barco(cod_barco),
 constraint contrato_fk foreign key(cod_contrato) references contrato(cod_contrato)
 );
 
-
+-- tabla usuario para el login
+create table usuario(
+cod_usuario int primary key,
+cod_tipo_empleado int,
+nom_usuario varchar(100),
+ape_usuario varchar(100),
+username varchar(100),
+pass varchar(200),
+constraint tipo_empleado2_fk foreign key (cod_tipo_empleado) references tipo_empleado(cod_tipo_empleado)   
+);
 -- tabla itinerario
 -- create table itinerario(
 -- cod_itinerario int primary key,
@@ -101,11 +110,3 @@ constraint contrato_fk foreign key(cod_contrato) references contrato(cod_contrat
 -- hora_llegada datetime
 -- );
 
-
--- tabla tripulacion
-create table tripulacion(
-cod_barco int,
-cod_empleado int,
-constraint barco_fk foreign key(cod_barco) references barco(cod_barco),
-constraint empleado_fk foreign key(cod_empleado) references empleado(cod_empleado)
-);
