@@ -1,6 +1,6 @@
 -- username: root
 -- pass: 12345
- drop database TIHC;
+-- drop database TIHC;
 create database TIHC;
 
 use TIHC;
@@ -32,11 +32,7 @@ constraint pais_fk foreign key(cod_pais) references pais(cod_pais)
 create table contrato(
 cod_contrato int primary key, -- codigo radicacion
 cod_cliente int,
-origen int,
-destino int,
-constraint cliente_fk foreign key(cod_cliente) references cliente(cod_cliente),
-constraint origen_fk foreign key(origen) references pais(cod_pais),
-constraint destino_fk foreign key(destino) references pais(cod_pais)
+constraint cliente_fk foreign key(cod_cliente) references cliente(cod_cliente)
 );
 
 -- tabla tipo carga
@@ -86,9 +82,13 @@ cod_contrato int,
 cod_barco int,
 cod_tipo_carga int,
 peso int,
+origen int,
+destino int,
 descripcion varchar(400),
 constraint tipo_carga_fk foreign key(cod_tipo_carga) references tipo_carga(cod_tipo_carga),
 constraint barco2_fk foreign key(cod_barco) references barco(cod_barco),
+constraint origen_fk foreign key(origen) references pais(cod_pais),
+constraint destino_fk foreign key(destino) references pais(cod_pais),
 constraint contrato_fk foreign key(cod_contrato) references contrato(cod_contrato)
 );
 
