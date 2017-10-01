@@ -5,10 +5,12 @@
  */
 package controller;
 
-import java.beans.Statement;
+import java.sql.Statement;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -21,8 +23,23 @@ public class ConnectionDB{
     private Connection conexion;
     private ResultSet read;
     
-    public ConnectionDB()
+    public ConnectionDB() 
         {
-        
+          try
+            {
+            Class.forName("com.mysql.jdbc.Driver");
+            conexion=DriverManager.getConnection("jdbc:mysql://localhost/tihc?user=root&password=12345");
+            statement=conexion.createStatement();    
+            }catch(ClassNotFoundException e)
+                {
+                System.out.println("no a puesto el diver en la libreria");
+                }
+            catch(SQLException sql)
+                {
+                System.out.println("recuerde que la contraseñña es: 12345 y es user root");
+                }
         }
+    public static void main(String[] args) {
+        ConnectionDB c=new ConnectionDB();
+    }
 }
