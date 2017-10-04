@@ -47,20 +47,4 @@ public class ConnectionDB{
                 System.out.println("recuerde que la contraseñña es: 12345 y es user root");
                 }
         }
-    public static void main(String[] args) throws SQLException {
-        ConnectionDB c=new ConnectionDB();
-      DAOCrewmanImpl d=new DAOCrewmanImpl();
-        Ship s=new Ship(1,new Date(1,12,1),new Date(2,12,2),new State(1, "bueno", "nice"));
-        Crewman crew=new Crewman(4, "valentina","lindarte", s);
-        
-      //  d.create(crew);
-        crew.setName("stiven");
-       // d.edit(crew);
-     //   d.delete(crew);
-        List<Crewman> list=d.read();
-        for (Crewman crewman : list) {
-            System.out.println(crewman.getName()+" "+crewman.getId());
-            
-        }
-    }
 }

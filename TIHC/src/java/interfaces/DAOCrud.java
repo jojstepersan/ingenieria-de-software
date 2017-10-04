@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author jojstepersan
  */
-public interface DAOObject {
+public interface DAOCrud {
     
     public void create(Object ob)throws SQLException;
     public void edit(Object ob)throws SQLException;

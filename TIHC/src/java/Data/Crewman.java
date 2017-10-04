@@ -26,4 +26,9 @@ public class Crewman  extends Employee{
         this.ship = ship;
     }
     
+    @Override
+    public String toString()
+        {
+        return this.getName()+" "+this.getId();
+        }
 }

@@ -5,15 +5,15 @@
  */
 package dao;
 
-import interfaces.DAOObject;
 import java.sql.SQLException;
 import java.util.List;
+import interfaces.DAOCrud;
 
 /**
  *
  * @author jojstepersan
  */
-public class DAOObjectImpl extends ConnectionDB implements DAOObject {
+public class DAOObjectImpl extends ConnectionDB implements DAOCrud {
 
     @Override
     public void create(Object ob) throws SQLException {

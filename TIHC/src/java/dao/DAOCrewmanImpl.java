@@ -8,17 +8,16 @@ package dao;
 import Data.Captain;
 import Data.Crewman;
 import Data.Ship;
-import interfaces.DAOCrewman;
-import interfaces.DAOObject;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import interfaces.DAOCrud;
 
 /**
  *
  * @author Valentina
  */
-public class DAOCrewmanImpl extends ConnectionDB implements DAOCrewman{
+public class DAOCrewmanImpl extends ConnectionDB implements DAOCrud{
 
     public DAOCrewmanImpl()
         {
@@ -26,65 +25,46 @@ public class DAOCrewmanImpl extends ConnectionDB implements DAOCrewman{
         }
 
     @Override
-    public void create(Crewman ob) throws SQLException {
-        int type=(ob instanceof Captain)?1:2;
-//        if( ob instanceof Captain)
-//            type=1;
-//        else
-//            type=2;
-System.out.println("tipo "+type);
+    public void create(Object ob) throws SQLException {
+        Crewman crewman=(Crewman)ob;
+        int type=(crewman instanceof Captain)?1:2;
         insert=conexion.prepareStatement("INSERT INTO tripulante VALUES(?,?,?,?,?);");
-        insert.setInt(1, ob.getId());
-        System.out.println("id "+ob.getId());
-        insert.setInt(2, ob.getShip().getCodeShip());
-        System.out.println("barco "+ob.getShip().getCodeShip());
-        insert.setString(3, ob.getName());
-        insert.setString(4, ob.getLastName());
+        insert.setInt(1, crewman.getId());
+        insert.setInt(2, crewman.getShip().getCodeShip());
+        insert.setString(3, crewman.getName());
+        insert.setString(4, crewman.getLastName());
         insert.setInt(5,type);
         insert.executeUpdate();
         conexion.close();
     }
 
     @Override
-    public void edit(Crewman ob) throws SQLException {
-         int type=(ob instanceof Captain)?1:2;
-//        if( ob instanceof Captain)
-//            type=1;
-//        else
-//            type=2;
+    public void edit(Object ob) throws SQLException {
+        Crewman crewman=(Crewman)ob; 
+        int type=(crewman instanceof Captain)?1:2;
         insert=conexion.prepareStatement("UPDATE tripulante set cod_barco=?,nom_empleado=?,ape_empleado=?,tipo_empleado=? where cod_empleado=?;");
-        insert.setInt(1, ob.getShip().getCodeShip());
-        System.out.println("barco "+ob.getShip().getCodeShip());
-        insert.setString(2, ob.getName());
-        System.out.println("name "+ob.getName());
-        insert.setString(3, ob.getLastName());
+        insert.setInt(1, crewman.getShip().getCodeShip());
+        insert.setString(2, crewman.getName());
+        insert.setString(3, crewman.getLastName());
         insert.setInt(4,type);
-        insert.setInt(5, ob.getId());
+        insert.setInt(5, crewman.getId());
         insert.executeUpdate();
         conexion.close();
-     
     }
 
     @Override
-    public void delete(Crewman ob) throws SQLException {
-        int type=(ob instanceof Captain)?1:2;
-//        if( ob instanceof Captain)
-//            type=1;
-//        else
-//            type=2;
+    public void delete(Object ob) throws SQLException {
+        Crewman crewman=(Crewman)ob;
         insert=conexion.prepareStatement("DELETE FROM TRIPULANTE where cod_empleado=?;");
-        insert.setInt(1, ob.getId());
+        insert.setInt(1, crewman.getId());
         insert.executeUpdate();
         conexion.close();
-    
     }
 
     @Override
-    public List<Crewman> read() throws SQLException {
-        List<Crewman> listCrewman = new ArrayList<>();
-        System.out.println("holis");
+    public List<Object> read() throws SQLException {
+        List<Object> listCrewman = new ArrayList<>();
         insert=conexion.prepareStatement("select * FROM TRIPULANTE;");
-        System.out.println("query");
         read = insert.executeQuery();
         while(read.next()){
             int type=read.getInt("tipo_empleado");
@@ -97,7 +77,6 @@ System.out.println("tipo "+type);
             }
         conexion.close();
         return listCrewman;
-    
     }
 
 }
