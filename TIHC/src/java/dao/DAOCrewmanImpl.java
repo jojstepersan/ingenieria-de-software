@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import interfaces.DAOCrud;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,12 +30,11 @@ public class DAOCrewmanImpl extends ConnectionDB implements DAOCrud{
     public void create(Object ob) throws SQLException {
         Crewman crewman=(Crewman)ob;
         int type=(crewman instanceof Captain)?1:2;
-        insert=conexion.prepareStatement("INSERT INTO tripulante VALUES(?,?,?,?,?);");
+        insert=conexion.prepareStatement("INSERT INTO tripulante(cod_empleado,nom_empleado,ape_empleado,tipo_empleado)  VALUES(?,?,?,?);");
         insert.setInt(1, crewman.getId());
-        insert.setInt(2, crewman.getShip().getCodeShip());
-        insert.setString(3, crewman.getName());
-        insert.setString(4, crewman.getLastName());
-        insert.setInt(5,type);
+        insert.setString(2, crewman.getName());
+        insert.setString(3, crewman.getLastName());
+        insert.setInt(4,type);
         insert.executeUpdate();
         conexion.close();
     }
@@ -78,5 +79,26 @@ public class DAOCrewmanImpl extends ConnectionDB implements DAOCrud{
         conexion.close();
         return listCrewman;
     }
+
+    
+    public Crewman getCrewman(int id) 
+        {
+        Crewman crewman = new Crewman();
+        try {
+            insert=conexion.prepareStatement("select * from tripulante where cod_empleado=? and tipo_empleado=1;");
+            insert.setInt(1, id);
+            read=insert.executeQuery();
+            while(read.next()){
+                crewman.setId(read.getInt(1));
+                crewman.setName(read.getString(3));
+                crewman.setLastName(read.getString(4));
+              }
+            conexion.close();
+            } catch (SQLException ex) 
+                {
+                System.out.println("este usuario no existe");
+                }
+        return crewman;
+        }
 
 }

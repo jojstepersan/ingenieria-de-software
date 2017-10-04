@@ -11,8 +11,10 @@ package Data;
  */
 //Clase capitan
 public class Captain extends Crewman{
-    
-    
+     
+    public Captain(int id, String name, String lastName) {
+        super(id, name, lastName);
+    }
     public Captain(int id, String name, String lastName,Ship ship) {
         super(id, name, lastName,ship);
     }

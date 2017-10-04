@@ -13,10 +13,17 @@ package Data;
 public class Crewman  extends Employee{
     protected Ship ship;
     
+  
+    
+    public Crewman(int id, String name, String lastName) {
+        super(id, name, lastName);
+     }
     public Crewman(int id, String name, String lastName,Ship ship) {
         super(id, name, lastName);
         this.ship=ship;
     }
+
+    public Crewman() {}
 
     public Ship getShip() {
         return ship;

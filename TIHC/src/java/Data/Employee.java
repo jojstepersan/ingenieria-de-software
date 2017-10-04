@@ -15,6 +15,7 @@ public class Employee {
     private String name;
     private String lastName;
 
+    public Employee(){}
     public Employee(int id, String name, String lastName) {
         this.id = id;
         this.name = name;
