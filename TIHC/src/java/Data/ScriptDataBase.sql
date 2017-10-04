@@ -105,6 +105,8 @@ constraint tipo_empleado2_fk foreign key (cod_tipo_empleado) references tipo_emp
 
 insert into tipo_empleado values(1,'capitan');
 insert into tipo_empleado values(2,'tripulante');
+insert into tipo_empleado values(3,'usuario');
+
 insert into estado values(1,'Listo','Listo para salir');
 insert into barco values(1,1,'2017-09-08','2017-09-08');
 -- tabla itinerario
@@ -115,3 +117,5 @@ insert into barco values(1,1,'2017-09-08','2017-09-08');
 -- hora_llegada datetime
 -- );
 
+select * from tripulante;
+delete  from tripulante;
