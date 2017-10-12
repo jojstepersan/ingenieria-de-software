@@ -5,8 +5,13 @@
  */
 package dao;
 
+import Data.*;
 import interfaces.DAOObject;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,25 +19,64 @@ import java.util.List;
  * @author Kevin
  */
 public class DAOShipImpl extends ConnectionDB implements DAOObject {
+    
+    public DAOShipImpl()
+        {
+        super();
+        }
 
     @Override
     public void create(Object ob) throws SQLException {
+        Ship ship = (Ship)ob;
+  
+        insert=conexion.prepareStatement("INSERT INTO barco(cod_barco,cod_estado,fecha_adquisicion,fecha_ultimo_mantenimiento)  VALUES(?,?,?,?);");
+        insert.setInt(1, ship.getCodeShip());
+        insert.setInt(2, ship.getState().getCodeState());
+        insert.setDate(3,ship.getDateAcquisition());
+        insert.setDate(4,ship.getDateOfLastMaintenance());
+        insert.executeUpdate();
+        conexion.close();
         
     }
 
     @Override
     public void edit(Object ob) throws SQLException {
+        Ship ship = (Ship)ob;
         
+        insert=conexion.prepareStatement("UPDATE barco set cod_estado=? ,fecha_adquisicion=? ,fecha_ultimo_mantenimiento = ?   WHERE cod_barco= ?;");
+        insert.setInt(4, ship.getCodeShip());
+        insert.setInt(1, ship.getState().getCodeState());
+        insert.setDate(2,ship.getDateAcquisition());
+        insert.setDate(3,ship.getDateOfLastMaintenance());
+        insert.executeUpdate();
+        conexion.close();
     }
 
     @Override
     public void delete(Object ob) throws SQLException {
+        Ship ship=(Ship)ob;
+        insert=conexion.prepareStatement("DELETE FROM BARCO where cod_barco=?;");
+        insert.setInt(1,ship.getCodeShip());
+        insert.executeUpdate();
+        conexion.close();
        
     }
 
     @Override
     public List<Object> read() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        List<Object> listShip = new ArrayList<>();
+        insert=conexion.prepareStatement("select * FROM TRIPULANTE;");
+        read = insert.executeQuery();
+        while(read.next()){
+            int type=read.getInt("tipo_empleado");
+            Ship ship;
+            ship = new Ship(read.getInt("cod_barco"), read.getDate("nom_empleado"), read.getDate("ape_empleado"),new State(read.getInt("ape_empleado"),"",""));
+               
+            listShip.add(ship);
+            }
+        conexion.close();
+        return listShip;
     }
     
 }

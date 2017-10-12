@@ -20,10 +20,10 @@ import java.sql.SQLException;
  */
 public class ConnectionDB{
     
-    private PreparedStatement insert;
+    PreparedStatement insert;
     private Statement statement;
-    private Connection conexion;
-    private ResultSet read;
+    Connection conexion;
+    ResultSet read;
     
     public ConnectionDB() 
         {
