@@ -1,13 +1,13 @@
 package dao;
 
-
-
+import Data.Country;
 import Data.Port;
-import dao.ConnectionDB;
 import interfaces.DAOCrud;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DAOportsImpl extends ConnectionDB implements DAOCrud{
 
@@ -23,7 +23,7 @@ public class DAOportsImpl extends ConnectionDB implements DAOCrud{
         insert=conexion.prepareStatement("INSERT INTO puerto(cod_puerto,nom_puerto,cod_pais)  VALUES(?,?,?);");
         insert.setInt(1,port.getId());
         insert.setString(2, port.getName());
-        insert.setInt(3, port.getId_country());
+        insert.setInt(3, port.getCountry().getId());
         insert.executeUpdate();
         conexion.close();
     }
@@ -32,10 +32,10 @@ public class DAOportsImpl extends ConnectionDB implements DAOCrud{
     public void edit(Object ob) throws SQLException {
        Port port=(Port)ob; 
        
-        insert=conexion.prepareStatement("UPDATE puerto set (cod_puerto,nom_puerto,cod_pais)  VALUES(?,?,?);");
-        insert.setInt(1,port.getId());
-       insert.setString(2, port.getName());
-       insert.setInt(3, port.getId_country());
+        insert=conexion.prepareStatement("UPDATE puerto set nom_puerto=?,cod_pais=?  where cod_puerto=?;");
+        insert.setString(1, port.getName());
+        insert.setInt(2, port.getCountry().getId());
+        insert.setInt(3,port.getId());
         insert.executeUpdate();
         conexion.close();
     }
@@ -55,18 +55,13 @@ public class DAOportsImpl extends ConnectionDB implements DAOCrud{
         insert=conexion.prepareStatement("select * FROM PUERTO;");
         read = insert.executeQuery();
         while(read.next()){
-            int type=read.getInt("tipo_empleado");
-           Port port;
-           
-                port = new Port(read.getInt("cod_puerto"), read.getString("nom_puerto"), read.getInt("cod_pais"));
-        
+            Port port;
+            Country country=(new DAOCountryImpl()).getById(read.getInt("cod_pais")); 
+            port = new Port(read.getInt("cod_puerto"), read.getString("nom_puerto"), country);
             listPort.add(port);
             }
         conexion.close();
         return listPort;
     }
-
-    
-
 
 }

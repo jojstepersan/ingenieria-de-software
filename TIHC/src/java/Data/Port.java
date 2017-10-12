@@ -11,19 +11,16 @@ package Data;
  */
 public class Port {
     
-      private int id;
+    private int id;
     private String name;
-    private int id_country;
+    private Country country;
 
-    public Port(int id, String name, int id_country) {
+    public Port(int id, String name,Country country) {
         this.id = id;
         this.name = name;
-        this.id_country = id_country;
+        this.country = country;
     }
     
-    
-    
-
     public int getId() {
         return id;
     }
@@ -32,9 +29,6 @@ public class Port {
         return name;
     }
 
-    public int getId_country() {
-        return id_country;
-    }
 
     public void setId(int id) {
         this.id = id;
@@ -44,9 +38,14 @@ public class Port {
         this.name = name;
     }
 
-    public void setId_country(int id_country) {
-        this.id_country = id_country;
+    public Country getCountry() {
+        return country;
     }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
     
     
 }

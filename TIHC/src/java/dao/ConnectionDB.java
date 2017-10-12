@@ -36,7 +36,7 @@ public class ConnectionDB{
           try
             {
             Class.forName("com.mysql.jdbc.Driver");
-            conexion=DriverManager.getConnection("jdbc:mysql://localhost/tihc?user=root&password=1234");
+            conexion=DriverManager.getConnection("jdbc:mysql://localhost/tihc?user=root&password=12345");
             statement=conexion.createStatement();    
             }catch(ClassNotFoundException e)
                 {
@@ -47,4 +47,7 @@ public class ConnectionDB{
                 System.out.println("recuerde que la contraseñña es: 12345 y es user root");
                 }
         }
+    public static void main(String[] args) {
+        
+    }
 }

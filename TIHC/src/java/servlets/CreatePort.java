@@ -77,13 +77,11 @@ public class CreatePort extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
         
-        
-         int id  = Integer.valueOf(request.getParameter("id"));
+        int id  = Integer.valueOf(request.getParameter("id"));
         String name = request.getParameter("Port name");
         String id_country = request.getParameter("Country id");
-        
+        System.out.println(id+" "+name+" "+id_country);
         Port port = new Port(id, name, id);
         DAOportsImpl dport=new DAOportsImpl();
         try {
