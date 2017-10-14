@@ -82,6 +82,7 @@ public class DeleteShip extends HttpServlet {
         try {
             Ship barco = new Ship(codBarco,"","",0);
             dao.delete(barco);
+            response.sendRedirect("Readship");
         } catch (SQLException ex) {
             Logger.getLogger(DeleteShip.class.getName()).log(Level.SEVERE, null, ex);
         }

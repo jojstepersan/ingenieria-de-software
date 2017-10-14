@@ -5,15 +5,13 @@
  */
 package servlets;
 
-import Data.*;
+import Data.Ship;
 import dao.DAOShipImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -26,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Kevin
  */
-@WebServlet(name = "CreateShip", urlPatterns = {"/CreateShip"})
-public class CreateShip extends HttpServlet {
+@WebServlet(name = "Readship", urlPatterns = {"/Readship"})
+public class Readship extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,17 +37,48 @@ public class CreateShip extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            DAOShipImpl dao= new DAOShipImpl();
+            List barcos= dao.read();
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CreateShip</title>");            
+            out.println("<style> table, th, td {border: 1px solid black;}</style>");
+            out.println("<title>Servlet Readship</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CreateShip at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Lista de Barcos</h1>");
+            out.println("<table style='width:100%'>");
+            out.println("<tr>");
+            out.println("<th>Codigo barco</th>");
+            out.println("<th>Estado</th>"); 
+            out.println("<th>Fecha Adquisicion</th>");
+            out.println("<th>Fecha Manteminmiento</th>");
+            out.println("<th>Accion</th>"); 
+            out.println("</tr>");
+            for(int i=0;i<barcos.size();i++){
+            Ship aux=(Ship)barcos.get(i);
+            out.println("<tr>");
+            out.println("<td>"+aux.getCodeShip()+"</td>");
+            out.println("<td>"+dao.state_text(aux.getState())+"</td>");
+            out.println("<td>"+aux.getDateAcquisition()+"</td>");
+            out.println("<td>"+aux.getDateOfLastMaintenance()+"</td>");
+            out.println("<td><form action=\"UpdateShip.jsp\" method=\"post\">");
+            out.println("<input type=\"hidden\" value=\""+aux.getCodeShip()+"\" name=\"cod\" />");
+            out.println("<button type=\"submit\">Actualizar</button>");
+            out.println("</form></td>");
+            
+            out.println("<td><form action=\"DeleteShip\" method=\"post\">");
+            out.println("<input type=\"hidden\" value=\""+aux.getCodeShip()+"\" name=\"cod\" />");
+            out.println("<button type=\"submit\">Borrar</button>");
+            out.println("</form></td>");
+            out.println("</tr>");    
+            }
+            dao.cerrar();
+            out.println("</table>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -67,7 +96,11 @@ public class CreateShip extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Readship.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -82,19 +115,9 @@ public class CreateShip extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            DAOShipImpl dao= new DAOShipImpl();
-            
-            int codBarco = Integer.parseInt(request.getParameter("cod"));
-            int state = Integer.parseInt(request.getParameter("state"));
-            String dateac = request.getParameter("dateac");
-            String datema = request.getParameter("datema");           /*convierte string en fecha*/
-            
-            Ship barco = new Ship(codBarco,dateac,datema,state);
-            dao.create(barco);
-            response.sendRedirect("Readship");
-
+            processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(CreateShip.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Readship.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -74,23 +74,38 @@ public class DAOShipImpl extends ConnectionDB implements DAOObject {
                
             listShip.add(ship);
             }
-        conexion.close();
+   
         return listShip;
     }
-    public Ship One_ship(int cod) throws SQLException{
-        Ship h;
-        insert=conexion.prepareStatement("select * FROM BARCO WHERE cod_barco=?");
+   public String state_text (int cod) throws SQLException{
+       String nom = "";
+       insert=conexion.prepareStatement("select nom_estado FROM ESTADO WHERE cod_estado=?");
         insert.setInt(1,cod);
         read = insert.executeQuery();
         while(read.next()){
-            Ship ship;
-            h= new Ship(read.getInt("cod_barco"), read.getString("fecha_adquisicion"), read.getString("fecha_ultimo_mantenimiento"),read.getInt("cod_estado"));
-            return h;
+            nom= read.getString("nom_estado");
+           
             }
-        conexion.close();
-        
-        return null;
-        
+       return nom;     
+   }
+   
+   
+   public List<Object> StateList() throws SQLException {   
+        List<Object> listStates = new ArrayList<>();
+        insert=conexion.prepareStatement("select * FROM estado;");
+        read = insert.executeQuery();
+        while(read.next()){
+            State estado;
+            estado = new State(read.getInt("cod_estado"), read.getString("nom_estado"), read.getString("descripcion"));
+               
+            listStates.add(estado);
+            }
+   
+        return listStates;
     }
-    
+   
+   
+   public void cerrar() throws SQLException{
+        conexion.close();
+   }
 }

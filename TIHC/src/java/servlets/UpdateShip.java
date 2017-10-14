@@ -93,6 +93,7 @@ public class UpdateShip extends HttpServlet {
             DAOShipImpl dao= new DAOShipImpl();
         
             dao.edit(barcoup);
+            response.sendRedirect("Readship");
         } catch (SQLException ex) {
             Logger.getLogger(DeleteShip.class.getName()).log(Level.SEVERE, null, ex);
         }
