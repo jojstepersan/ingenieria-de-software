@@ -80,7 +80,7 @@ public class DeleteShip extends HttpServlet {
             int codBarco = Integer.parseInt(request.getParameter("cod"));
             DAOShipImpl dao= new DAOShipImpl();
         try {
-            Ship barco = dao.One_ship(codBarco);
+            Ship barco = new Ship(codBarco,"","",0);
             dao.delete(barco);
         } catch (SQLException ex) {
             Logger.getLogger(DeleteShip.class.getName()).log(Level.SEVERE, null, ex);

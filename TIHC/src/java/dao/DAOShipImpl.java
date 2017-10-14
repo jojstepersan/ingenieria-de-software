@@ -31,9 +31,9 @@ public class DAOShipImpl extends ConnectionDB implements DAOObject {
   
         insert=conexion.prepareStatement("INSERT INTO barco(cod_barco,cod_estado,fecha_adquisicion,fecha_ultimo_mantenimiento)  VALUES(?,?,?,?);");
         insert.setInt(1, ship.getCodeShip());
-        insert.setInt(2, ship.getState().getCodeState());
-        insert.setDate(3,ship.getDateAcquisition());
-        insert.setDate(4,ship.getDateOfLastMaintenance());
+        insert.setInt(2, ship.getState());
+        insert.setString(3,ship.getDateAcquisition());
+        insert.setString(4,ship.getDateOfLastMaintenance());
         insert.executeUpdate();
         conexion.close();
         
@@ -45,9 +45,9 @@ public class DAOShipImpl extends ConnectionDB implements DAOObject {
         
         insert=conexion.prepareStatement("UPDATE barco set cod_estado=? ,fecha_adquisicion=? ,fecha_ultimo_mantenimiento = ?   WHERE cod_barco= ?;");
         insert.setInt(4, ship.getCodeShip());
-        insert.setInt(1, ship.getState().getCodeState());
-        insert.setDate(2,ship.getDateAcquisition());
-        insert.setDate(3,ship.getDateOfLastMaintenance());
+        insert.setInt(1, ship.getState());
+        insert.setString(2,ship.getDateAcquisition());
+        insert.setString(3,ship.getDateOfLastMaintenance());
         insert.executeUpdate();
         conexion.close();
     }
@@ -70,7 +70,7 @@ public class DAOShipImpl extends ConnectionDB implements DAOObject {
         read = insert.executeQuery();
         while(read.next()){
             Ship ship;
-            ship = new Ship(read.getInt("cod_barco"), read.getDate("fecha_adquisicion"), read.getDate("fecha_ultimo_mantenimiento"),new State(read.getInt("cod_estado"),"",""));
+            ship = new Ship(read.getInt("cod_barco"), read.getString("fecha_adquisicion"), read.getString("fecha_ultimo_mantenimiento"),read.getInt("cod_estado"));
                
             listShip.add(ship);
             }
@@ -84,7 +84,7 @@ public class DAOShipImpl extends ConnectionDB implements DAOObject {
         read = insert.executeQuery();
         while(read.next()){
             Ship ship;
-            h= new Ship(read.getInt("cod_barco"), read.getDate("fecha_adquisicion"), read.getDate("fecha_ultimo_mantenimiento"),new State(read.getInt("cod_estado"),"",""));
+            h= new Ship(read.getInt("cod_barco"), read.getString("fecha_adquisicion"), read.getString("fecha_ultimo_mantenimiento"),read.getInt("cod_estado"));
             return h;
             }
         conexion.close();

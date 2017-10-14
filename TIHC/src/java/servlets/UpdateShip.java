@@ -6,7 +6,6 @@
 package servlets;
 
 import Data.Ship;
-import Data.State;
 import dao.DAOShipImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -83,23 +82,19 @@ public class UpdateShip extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          try {
-             DateFormat df = new SimpleDateFormat("mm/dd/yyyy");
             int codBarco = Integer.parseInt(request.getParameter("cod"));
             int state = Integer.parseInt(request.getParameter("state"));
             String dateac = request.getParameter("dateac");
             String datema = request.getParameter("datema");           
-            Date dateAc = (Date) df.parse(dateac);/*convierte string en fecha*/
-            Date dateman = (Date) df.parse(datema);/*convierte string en fecha*/
-            State stado = new State(state,"","");
+
+
             
-            Ship barcoup = new Ship(codBarco,dateAc,dateman,stado);
+            Ship barcoup = new Ship(codBarco,dateac,datema,state);
             DAOShipImpl dao= new DAOShipImpl();
         
             dao.edit(barcoup);
         } catch (SQLException ex) {
             Logger.getLogger(DeleteShip.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
-            Logger.getLogger(UpdateShip.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

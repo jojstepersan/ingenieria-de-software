@@ -13,12 +13,12 @@ import java.sql.Date;
  */
 public class Ship {
     private int codeShip;    
-    private Date dateAcquisition;
-    private Date dateOfLastMaintenance;
-    private State state;
+    private String dateAcquisition;
+    private String dateOfLastMaintenance;
+    private int state;
 
     public Ship(){}
-    public Ship(int codeShip, Date dateAcquisition, Date dateOfLastMaintenance, State state) {
+    public Ship(int codeShip, String dateAcquisition, String dateOfLastMaintenance, int state) {
         this.codeShip = codeShip;
         this.dateAcquisition = dateAcquisition;
         this.dateOfLastMaintenance = dateOfLastMaintenance;
@@ -33,27 +33,27 @@ public class Ship {
         this.codeShip = codeShip;
     }
 
-    public Date getDateAcquisition() {
+    public String getDateAcquisition() {
         return dateAcquisition;
     }
 
-    public void setDateAcquisition(Date dateAcquisition) {
+    public void setDateAcquisition(String dateAcquisition) {
         this.dateAcquisition = dateAcquisition;
     }
 
-    public Date getDateOfLastMaintenance() {
+    public String getDateOfLastMaintenance() {
         return dateOfLastMaintenance;
     }
 
-    public void setDateOfLastMaintenance(Date dateOfLastMaintenance) {
+    public void setDateOfLastMaintenance(String dateOfLastMaintenance) {
         this.dateOfLastMaintenance = dateOfLastMaintenance;
     }
 
-    public State getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(State state) {
+    public void setState(int state) {
         this.state = state;
     }
     

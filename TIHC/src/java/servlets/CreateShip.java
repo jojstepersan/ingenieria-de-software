@@ -83,21 +83,16 @@ public class CreateShip extends HttpServlet {
             throws ServletException, IOException {
         try {
             DAOShipImpl dao= new DAOShipImpl();
-            DateFormat df = new SimpleDateFormat("mm/dd/yyyy");
             
             int codBarco = Integer.parseInt(request.getParameter("cod"));
             int state = Integer.parseInt(request.getParameter("state"));
             String dateac = request.getParameter("dateac");
-            String datema = request.getParameter("datema");           
-            Date dateAc = (Date) df.parse(dateac);/*convierte string en fecha*/
-            Date dateman = (Date) df.parse(datema);/*convierte string en fecha*/
-            State stado = new State(state,"","");
-            Ship barco = new Ship(codBarco,dateAc,dateman,stado);
+            String datema = request.getParameter("datema");           /*convierte string en fecha*/
+            
+            Ship barco = new Ship(codBarco,dateac,datema,state);
             dao.create(barco);
             
 
-        } catch (ParseException ex) {
-            Logger.getLogger(CreateShip.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(CreateShip.class.getName()).log(Level.SEVERE, null, ex);
         }
