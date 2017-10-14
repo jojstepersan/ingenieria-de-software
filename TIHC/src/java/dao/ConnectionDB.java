@@ -2,16 +2,22 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
-package dao;
+ */package dao;
 
 
+import Data.Crewman;
+import Data.Ship;
+import Data.State;
 import java.sql.Statement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,10 +25,10 @@ import java.sql.SQLException;
  */
 public class ConnectionDB{
     
-    private PreparedStatement insert;
-    private Statement statement;
-    private Connection conexion;
-    private ResultSet read;
+    protected PreparedStatement insert;
+    protected Statement statement;
+    protected Connection conexion;
+    protected ResultSet read;
     
     public ConnectionDB() 
         {
@@ -40,7 +46,5 @@ public class ConnectionDB{
                 System.out.println("recuerde que la contraseñña es: 12345 y es user root");
                 }
         }
-    public static void main(String[] args) {
-        ConnectionDB c=new ConnectionDB();
-    }
+  
 }

@@ -1,6 +1,7 @@
 -- username: root
 -- pass: 12345
--- drop database TIHC;
+drop database TIHC;
+
 create database TIHC;
 
 use TIHC;
@@ -17,7 +18,7 @@ create table pais(
 cod_pais int primary key,
 nom_pais varchar(100),
 ubicacion_x float,
-ubicaion_y float
+ubicacion_y float
 );
 
 -- tabla puerto
@@ -102,6 +103,15 @@ username varchar(100),
 pass varchar(200),
 constraint tipo_empleado2_fk foreign key (cod_tipo_empleado) references tipo_empleado(cod_tipo_empleado)   
 );
+
+
+insert into tipo_empleado values(1,'capitan');
+insert into tipo_empleado values(2,'tripulante');
+insert into tipo_empleado values(3,'usuario');
+
+insert into estado values(1,'Listo','Listo para salir');
+insert into barco values(1,1,'2017-09-08','2017-09-08');
+
 -- tabla itinerario
 -- create table itinerario(
 -- cod_itinerario int primary key,
@@ -109,4 +119,40 @@ constraint tipo_empleado2_fk foreign key (cod_tipo_empleado) references tipo_emp
 -- hora_salida datetime,
 -- hora_llegada datetime
 -- );
+
+insert into pais(cod_pais,nom_pais) values(1,'Shanghai');
+insert into pais(cod_pais,nom_pais) values(2,'Singapore');
+insert into pais(cod_pais,nom_pais) values(3,'Busan');
+insert into pais(cod_pais,nom_pais) values(4,'Hong kong');
+insert into pais(cod_pais,nom_pais) values(5,'Jebel Ali');
+insert into pais(cod_pais,nom_pais) values(6,'Rotterdam');
+insert into pais(cod_pais,nom_pais) values(7,'Klang');
+insert into pais(cod_pais,nom_pais) values(8,'Antwerp');
+insert into pais(cod_pais,nom_pais) values(9,'Hamburg');
+insert into pais(cod_pais,nom_pais) values(10,'Los Angeles');
+insert into pais(cod_pais,nom_pais) values(11,'Akita');
+insert into pais(cod_pais,nom_pais) values(12,'Long Beach');
+insert into pais(cod_pais,nom_pais) values(13,'Ho Chi Minh');
+insert into pais(cod_pais,nom_pais) values(14,'Jakarta');
+insert into pais(cod_pais,nom_pais) values(15,'Columbo');
+insert into pais(cod_pais,nom_pais) values(16,'Valencia');
+insert into pais(cod_pais,nom_pais) values(17,'Manila');
+insert into pais(cod_pais,nom_pais) values(18,'Jeddah');
+insert into pais(cod_pais,nom_pais) values(19,'Jawaharlal Nehru');
+insert into pais(cod_pais,nom_pais) values(20,'Felixstone');
+insert into pais(cod_pais,nom_pais) values(21,'Santos');
+insert into pais(cod_pais,nom_pais) values(22,'Port Said');
+insert into pais(cod_pais,nom_pais) values(23,'Colon');
+insert into pais(cod_pais,nom_pais) values(24,'Piraeus');
+insert into pais(cod_pais,nom_pais) values(25,'Ambarli');
+insert into pais(cod_pais,nom_pais) values(26,'Marsaxlokk');
+insert into pais(cod_pais,nom_pais) values(27,'Vancouver');
+insert into pais(cod_pais,nom_pais) values(28,'Barrancabermeja');
+insert into pais(cod_pais,nom_pais) values(29,'Veracruz');
+insert into pais(cod_pais,nom_pais) values(30,'Bariloche');
+insert into pais(cod_pais,nom_pais) values(31,'Tampa');
+insert into pais(cod_pais,nom_pais) values(32,'Peel Port');
+insert into pais(cod_pais,nom_pais) values(33,'Durban');
+
+insert into cliente values(1,'stiven','perdomo');
 
