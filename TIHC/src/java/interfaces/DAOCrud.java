@@ -16,7 +16,7 @@ public interface DAOCrud {
     
     public void create(Object ob)throws SQLException;
     public void edit(Object ob)throws SQLException;
-    public void delete(Object ob)throws SQLException;
+    public void delete(int id)throws SQLException;
     public List<Object> read()throws SQLException;
     
     

@@ -10,6 +10,8 @@ import dao.DAOportsImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -74,27 +76,17 @@ public class DeletePort extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-        
-        
-        
-        
-        
-        
-        
-           int id  = Integer.valueOf(request.getParameter("id"));
-        String name = request.getParameter("Port name");
-        String id_country = request.getParameter("Country id");
-        
-        Port port = new Port(id, name, id);
+        throws ServletException, IOException {
         DAOportsImpl dport=new DAOportsImpl();
+        
+        int id  = Integer.valueOf(request.getParameter("id"));
+        Port port;
         try {
-            dport.delete(port);
+            dport.delete(id);
         } catch (SQLException ex) {
-            System.out.println("no se pudo crear el puerto"); 
-      
+            Logger.getLogger(DeletePort.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         processRequest(request, response);
         
     }

@@ -41,10 +41,10 @@ public class DAOportsImpl extends ConnectionDB implements DAOCrud{
     }
 
     @Override
-    public void delete(Object ob) throws SQLException {
-        Port port=(Port)ob; 
+    public void delete(int id) throws SQLException {
+        
         insert=conexion.prepareStatement("DELETE FROM PUERTO where cod_puerto=?;");
-        insert.setInt(1, port.getId());
+        insert.setInt(1, id);
         insert.executeUpdate();
         conexion.close();
     }
@@ -64,4 +64,18 @@ public class DAOportsImpl extends ConnectionDB implements DAOCrud{
         return listPort;
     }
 
+    public Port getById(int id)throws SQLException
+        {
+        Port port=null;
+        insert=conexion.prepareStatement("select * FROM PUERTO WHERE cod_puerto=?;");
+        insert.setInt(1, id);
+        read = insert.executeQuery();
+        while(read.next())
+            {
+            Country country=(new DAOCountryImpl()).getById(read.getInt("cod_pais")); 
+            port = new Port(read.getInt("cod_puerto"), read.getString("nom_puerto"), country);
+            }
+        conexion.close();
+        return port;
+        }
 }

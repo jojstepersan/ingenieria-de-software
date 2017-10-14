@@ -54,10 +54,9 @@ public class DAOCrewmanImpl extends ConnectionDB implements DAOCrud{
     }
 
     @Override
-    public void delete(Object ob) throws SQLException {
-        Crewman crewman=(Crewman)ob;
+    public void delete(int id) throws SQLException {
         insert=conexion.prepareStatement("DELETE FROM TRIPULANTE where cod_empleado=?;");
-        insert.setInt(1, crewman.getId());
+        insert.setInt(1, id);
         insert.executeUpdate();
         conexion.close();
     }

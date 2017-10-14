@@ -47,7 +47,5 @@ public class ConnectionDB{
                 System.out.println("recuerde que la contraseñña es: 12345 y es user root");
                 }
         }
-    public static void main(String[] args) {
-        
-    }
+  
 }

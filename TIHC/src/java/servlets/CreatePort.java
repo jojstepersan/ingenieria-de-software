@@ -6,6 +6,7 @@
 package servlets;
 
 import Data.Port;
+import dao.DAOCountryImpl;
 import dao.DAOportsImpl;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -79,10 +80,15 @@ public class CreatePort extends HttpServlet {
             throws ServletException, IOException {
         
         int id  = Integer.valueOf(request.getParameter("id"));
-        String name = request.getParameter("Port name");
-        String id_country = request.getParameter("Country id");
-        System.out.println(id+" "+name+" "+id_country);
-        Port port = new Port(id, name, id);
+        String name = request.getParameter("namePort");
+        String c = request.getParameter("country");
+        DAOCountryImpl dAOCountryImpl=new DAOCountryImpl();
+        
+        Port port=null;
+        try {
+            port = new Port(id, name,dAOCountryImpl.getByName(c) );
+        } catch (SQLException ex) {
+            System.out.println("no se pudo crear el pais"); }
         DAOportsImpl dport=new DAOportsImpl();
         try {
             dport.create(port);
