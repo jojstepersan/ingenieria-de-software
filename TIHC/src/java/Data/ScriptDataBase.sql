@@ -15,7 +15,7 @@ ape_cliente varchar(60)
 
 -- tabla pais
 create table pais(
-cod_pais int primary key,
+cod_pais int primary key auto_increment,
 nom_pais varchar(100),
 ubicacion_x float,
 ubicacion_y float

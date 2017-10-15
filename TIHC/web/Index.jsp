@@ -17,9 +17,7 @@
         <h1>Crear Tripulaciòn</h1>
         
         <a href="CreateCaptain.jsp">Create Captain</a>  <br>  
-        <a href="DeletedCaptain.jsp">Deleted Captain</a>  <br>   
-        <a href="ListCaptain.jsp">List Captain</a>  <br>   
-        <a href="CreateCrewman.jsp">Create Crewman</a>  
+        <a href="CrudCountry.jsp">Crud Country</a><br>
         
     </body>
     

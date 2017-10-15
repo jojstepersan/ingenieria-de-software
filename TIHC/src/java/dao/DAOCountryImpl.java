@@ -21,11 +21,10 @@ public class DAOCountryImpl extends ConnectionDB implements DAOCrud{
     @Override
     public void create(Object ob) throws SQLException {
         Country country=(Country)ob;
-        insert=conexion.prepareStatement("INSERT INTO pais VALUES(?,?,?,?);");
-        insert.setInt(1, country.getId());
-        insert.setString(2, country.getName());
-        insert.setDouble(3, country.getX());
-        insert.setDouble(4,country.getY());
+        insert=conexion.prepareStatement("INSERT INTO pais(nom_pais,ubicacion_x,ubicacion_y) VALUES(?,?,?);");
+        insert.setString(1, country.getName());
+        insert.setDouble(2, country.getX());
+        insert.setDouble(3,country.getY());
         insert.executeUpdate();
         conexion.close();
     }
@@ -85,5 +84,5 @@ public class DAOCountryImpl extends ConnectionDB implements DAOCrud{
         conexion.close();
         return country;
         } 
-    
+  
 }

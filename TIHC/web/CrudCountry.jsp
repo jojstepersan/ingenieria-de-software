@@ -19,7 +19,7 @@
         <title>Countries</title>
     </head>
     <body>
-       <div>
+        <h1 align="center">Crud Country</h1>
         <table border="1" align="center" style="width:50%">
         <thead>
            <tr>
@@ -43,7 +43,6 @@
             </c:forEach>
         </tbody>
     </table>
-    <p><a href="CrudCountryServlet?action=insert">Add User</a></p>
-    </div>
-    </body>
+    <p><a href="CreateCountry.jsp">Add Country</a></p>
+    </body>
 </html>

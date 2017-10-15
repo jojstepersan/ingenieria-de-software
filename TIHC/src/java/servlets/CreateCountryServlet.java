@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author jojstepersan
  */
-@WebServlet(name = "DeleteCountryServlet", urlPatterns = {"/DeleteCountryServlet"})
-public class DeleteCountryServlet extends HttpServlet {
+@WebServlet(name = "CreateCountryServlet", urlPatterns = {"/CreateCountryServlet"})
+public class CreateCountryServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,7 +37,6 @@ public class DeleteCountryServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.sendRedirect("CrudCountry.jsp");
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,17 +50,7 @@ public class DeleteCountryServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-            int id=Integer.valueOf(request.getParameter("Id"));
-        try {
-            
-            DAOCountryImpl dao=new DAOCountryImpl();
-            dao.delete(id);
-            System.out.println("borrado");
-        } catch (SQLException ex) {
-            System.out.println("no se encontro el pais");  }
-            
-            
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -76,6 +65,18 @@ public class DeleteCountryServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Country country;
+        String name;
+        double x,y;
+        name=request.getParameter("name");
+        x=Double.valueOf(request.getParameter("x"));
+        y=Double.valueOf(request.getParameter("y"));
+        country=new Country(name, -1, x, y);
+        DAOCountryImpl dao=new DAOCountryImpl();
+        try {
+            dao.create(country);
+        } catch (SQLException ex) {
+            System.out.println("no se pudo crear el pais"); }
         processRequest(request, response);
     }
 
