@@ -9,11 +9,7 @@ import Data.*;
 import dao.DAOShipImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -83,12 +79,10 @@ public class CreateShip extends HttpServlet {
             throws ServletException, IOException {
         try {
             DAOShipImpl dao= new DAOShipImpl();
-            
             int codBarco = Integer.parseInt(request.getParameter("cod"));
             int state = Integer.parseInt(request.getParameter("state"));
             String dateac = request.getParameter("dateac");
             String datema = request.getParameter("datema");           /*convierte string en fecha*/
-            
             Ship barco = new Ship(codBarco,dateac,datema,state);
             dao.create(barco);
             response.sendRedirect("Readship");
