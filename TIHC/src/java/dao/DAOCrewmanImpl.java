@@ -64,15 +64,17 @@ public class DAOCrewmanImpl extends ConnectionDB implements DAOCrud{
     @Override
     public List<Object> read() throws SQLException {
         List<Object> listCrewman = new ArrayList<>();
-        insert=conexion.prepareStatement("select * FROM TRIPULANTE;");
+        System.out.println("holis 1");
+        insert=conexion.prepareStatement("SELECT * FROM TRIPULANTE;");
         read = insert.executeQuery();
+        System.out.println("holis 2");
         while(read.next()){
             int type=read.getInt("tipo_empleado");
             Crewman crewman;
             if(type==1)
-                crewman = new Captain(read.getInt("cod_empleado"), read.getString("nom_empleado"), read.getString("ape_empleado"),new Ship());
+                crewman = new Captain(read.getInt("cod_empleado"), read.getString("nom_empleado"), read.getString("ape_empleado"),(new  DAOShipImpl()).getById(read.getInt("cod_barco")));
             else
-                crewman = new Crewman(read.getInt("cod_empleado"), read.getString("nom_empleado"), read.getString("ape_empleado"),new Ship());
+                crewman = new Crewman(read.getInt("cod_empleado"), read.getString("nom_empleado"), read.getString("ape_empleado"),(new  DAOShipImpl()).getById(read.getInt("cod_barco")));
             listCrewman.add(crewman);
             }
         conexion.close();
@@ -80,12 +82,13 @@ public class DAOCrewmanImpl extends ConnectionDB implements DAOCrud{
     }
 
     
-    public Crewman getCrewman(int id) 
+    public Crewman getCrewman(int id,int type) 
         {
         Crewman crewman = new Crewman();
         try {
-            insert=conexion.prepareStatement("select * from tripulante where cod_empleado=? and tipo_empleado=1;");
+            insert=conexion.prepareStatement("select * from tripulante where cod_empleado=? and tipo_empleado=?;");
             insert.setInt(1, id);
+            insert.setInt(2, type);
             read=insert.executeQuery();
             while(read.next()){
                 crewman.setId(read.getInt(1));
@@ -99,5 +102,14 @@ public class DAOCrewmanImpl extends ConnectionDB implements DAOCrud{
                 }
         return crewman;
         }
-
+    
+    
+    public static void main(String[] args) {
+        DAOCrewmanImpl dao=new DAOCrewmanImpl();
+        try {
+            dao.read();
+        } catch (SQLException ex) {
+            System.out.println("no se pudo");}
+    }
+    
 }

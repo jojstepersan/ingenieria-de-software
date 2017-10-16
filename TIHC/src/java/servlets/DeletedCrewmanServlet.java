@@ -5,10 +5,13 @@
  */
 package servlets;
 
+import Data.Captain;
 import dao.DAOCrewmanImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Valentina
  */
-@WebServlet(name = "DeletedCaptainServlet", urlPatterns = {"/DeletedCaptainServlet"})
-public class DeletedCaptainServlet extends HttpServlet {
+@WebServlet(name = "DeletedCrewmanServlet", urlPatterns = {"/DeletedCrewmanServlet"})
+public class DeletedCrewmanServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,7 +37,7 @@ public class DeletedCaptainServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.sendRedirect("CrudCaptain.jsp");
+        response.sendRedirect("CrudCrewman.jsp");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -53,11 +56,12 @@ public class DeletedCaptainServlet extends HttpServlet {
         throws ServletException, IOException {
             int id=Integer.valueOf(request.getParameter("Id"));
         try {
+            
             DAOCrewmanImpl dao=new DAOCrewmanImpl();
             dao.delete(id);
-            System.out.println("borrado");
+            System.out.println("borrado crewman");
         } catch (SQLException ex) {
-            System.out.println("no se encontro");  }
+            System.out.println("no se encontro crewman");  }
             
             
         processRequest(request, response);

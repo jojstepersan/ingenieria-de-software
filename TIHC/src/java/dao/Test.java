@@ -5,9 +5,6 @@
  */
 package dao;
 
-import Data.Crewman;
-
-import java.sql.SQLException;
 
 
 /**
@@ -15,5 +12,4 @@ import java.sql.SQLException;
  * @author Valentina
  */
 public class Test {
-    
-}
+   }

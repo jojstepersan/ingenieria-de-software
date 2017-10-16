@@ -5,8 +5,12 @@
  */
 package servlets;
 
+import Data.Captain;
+import Data.Ship;
+import dao.DAOCrewmanImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Valentina
  */
-@WebServlet(name = "EditCapainServlet", urlPatterns = {"/EditCapainServlet"})
-public class EditCapainServlet extends HttpServlet {
+@WebServlet(name = "EditCaptainServlet", urlPatterns = {"/EditCaptainServlet"})
+public class EditCaptainServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,12 +37,13 @@ public class EditCapainServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+           response.sendRedirect("CrudCaptain.jsp");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditCapainServlet</title>");            
+            out.println("<title>Servlet EditCapainServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet EditCapainServlet at " + request.getContextPath() + "</h1>");
@@ -47,15 +52,39 @@ public class EditCapainServlet extends HttpServlet {
         }
     }
 
-  public static int x;  
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        x=Integer.valueOf(request.getParameter("numEditCaptain"));
-        processRequest(request, response);
+
+        try {
+            System.out.println("llll");
+            String name = request.getParameter("name");
+            System.out.println("name" + name);
+            int id = Integer.valueOf(request.getParameter("id"));
+            System.out.println("id"+id);
+            String lastName = String.valueOf(request.getParameter("lastName"));
+            System.out.println("lastName:"+lastName);
+            Ship ship = new Ship();
+            int code = Integer.valueOf(request.getParameter("ship"));
+            System.out.println("code"+code);
+            ship.setCodeShip(code);
+            Captain cap = new Captain();
+            cap.setName(name);
+            cap.setId(id);
+            cap.setLastName(lastName);
+            cap.setShip(ship);
+            System.out.println("Barco" + ship);
+            DAOCrewmanImpl daoCaptain = new DAOCrewmanImpl();
+            daoCaptain.edit(cap);
+            processRequest(request, response);
+        } catch (SQLException ex) {
+                
+            System.out.println("No se pudo editar ");
+            
+                    
+        } 
     }
 
-    
     @Override
     public String getServletInfo() {
         return "Short description";

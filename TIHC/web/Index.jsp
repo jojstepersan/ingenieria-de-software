@@ -14,11 +14,11 @@
     <body>
         <h1>TIHC</h1>
         
-        <h1>Crear Tripulaciòn</h1>
-        
-        
-        <a href="CrudCountry.jsp">Crud Country</a><br>
 
+        <h1>Crud's</h1>
+        <a href="Login.jsp">Login</a>  <br>    
+        <a href="CrudCrewman.jsp">Crud Tripulacion</a>  <br>   
+        <a href="CrudCountry.jsp">Crud Country</a>  <br>   
         
     </body>
     
