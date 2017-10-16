@@ -31,7 +31,7 @@
                 <th>Apellido</th>
                 <th>Barco</th>
                 <th colspan=2>Action</th>
-            </tr>
+            </tr>   
         </thead>
         <tbody>
             <c:forEach var="con" items="${crewmans}">
@@ -39,7 +39,7 @@
                     <td>${con.getId()}</td>
                     <td>${con.getName()}</td>
                     <td>${con.getLastName()}</td>
-                    <td>${con.getShip().getCodeShip()}</td>
+                    <td>${con.getShip().getName()}</td>
                     <c:if test="${con.getClass().getName()=='Data.Captain'}">
                        <td><a href="UpdateCrewman.jsp?Id=${con.getId()}&&type=1">Update</a></td>
                     </c:if>
@@ -50,7 +50,8 @@
                 </tr>
                
             </c:forEach>
-                 <a href="CreateCrewman.jsp">Create Crewman</a>  <br>  
+                 <a href="CreateCrewman.jsp?type=2">Create Crewman</a>  <br> 
+                 <a href="CreateCaptain.jsp?type=1">Create Captain</a>  <br> 
         </tbody>
     </table>
     </div>

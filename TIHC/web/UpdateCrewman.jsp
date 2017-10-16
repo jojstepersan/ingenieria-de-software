@@ -15,12 +15,13 @@
 DAOCrewmanImpl daoCrewman=new DAOCrewmanImpl();
 int id=Integer.valueOf(request.getParameter("Id"));
 int type=Integer.valueOf(request.getParameter("type"));
-System.out.println("id "+id +" type "+type);
 Crewman crew =daoCrewman.getCrewman(id,type);
-System.out.println(crew.getName());
 request.setAttribute("crewman",crew);
 request.setAttribute("type", type);
 DAOShipImpl daoShip = new DAOShipImpl();
+List<Object> litsShip=daoShip.read();
+System.out.println(litsShip);
+  request.setAttribute("ships", litsShip);
 
 %>
 <html>
@@ -50,7 +51,7 @@ DAOShipImpl daoShip = new DAOShipImpl();
                     <c:forEach var="ship" items="${ships}">
                         <option > ${ship.getName()}</option>       
                     </c:forEach>
-                </select>
+        </select>
         <br>
         <input type="submit" value="Submit" />
     </form>

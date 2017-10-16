@@ -72,9 +72,9 @@ public class DAOCrewmanImpl extends ConnectionDB implements DAOCrud{
             int type=read.getInt("tipo_empleado");
             Crewman crewman;
             if(type==1)
-                crewman = new Captain(read.getInt("cod_empleado"), read.getString("nom_empleado"), read.getString("ape_empleado"),new Ship());
+                crewman = new Captain(read.getInt("cod_empleado"), read.getString("nom_empleado"), read.getString("ape_empleado"),(new  DAOShipImpl()).getById(read.getInt("cod_barco")));
             else
-                crewman = new Crewman(read.getInt("cod_empleado"), read.getString("nom_empleado"), read.getString("ape_empleado"),new Ship());
+                crewman = new Crewman(read.getInt("cod_empleado"), read.getString("nom_empleado"), read.getString("ape_empleado"),(new  DAOShipImpl()).getById(read.getInt("cod_barco")));
             listCrewman.add(crewman);
             }
         conexion.close();
@@ -102,6 +102,8 @@ public class DAOCrewmanImpl extends ConnectionDB implements DAOCrud{
                 }
         return crewman;
         }
+    
+    
     public static void main(String[] args) {
         DAOCrewmanImpl dao=new DAOCrewmanImpl();
         try {
@@ -109,4 +111,5 @@ public class DAOCrewmanImpl extends ConnectionDB implements DAOCrud{
         } catch (SQLException ex) {
             System.out.println("no se pudo");}
     }
+    
 }

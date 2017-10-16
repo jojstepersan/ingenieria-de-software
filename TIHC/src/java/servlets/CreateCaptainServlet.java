@@ -6,6 +6,7 @@
 package servlets;
 
 import Data.Captain;
+import Data.Crewman;
 import dao.DAOCrewmanImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,30 +38,19 @@ public class CreateCaptainServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.sendRedirect("CrudCaptain.jsp");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CreateCaptainServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CreateCaptainServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        response.sendRedirect("Index.jsp");
+        
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id  = Integer.valueOf(request.getParameter("id"));
-        String name = request.getParameter("nameCaptain");
-        String lasName = request.getParameter("lastNameCaptain");
-        
-        Captain captian = new Captain(id, name, lasName);
+        String name = request.getParameter("name");
+        String lasName = request.getParameter("lastName");
+        Crewman captian = new Crewman(id, name, lasName);
         DAOCrewmanImpl dcrewman=new DAOCrewmanImpl();
+        System.out.printf("name:%s lastname:%s cod %d\n",name,lasName,id);
         try {
             dcrewman.create(captian);
         } catch (SQLException ex) {

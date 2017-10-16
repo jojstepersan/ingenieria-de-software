@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -7,33 +8,27 @@ package Data;
 
 /**
  *
- * @author Valentina
+ * @author Kevin
  */
 public class State {
-    private int codeState;
-    private String nameState;
-    private String description;
+    private int code;
+    private String Name;
+    private String description;    
 
-    public State(int codeState, String nameState, String description) {
-        this.codeState = codeState;
-        this.nameState = nameState;
-        this.description = description;
+    public int getCode() {
+        return code;
     }
 
-    public int getCodeState() {
-        return codeState;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public void setCodeState(int codeState) {
-        this.codeState = codeState;
+    public String getName() {
+        return Name;
     }
 
-    public String getNameState() {
-        return nameState;
-    }
-
-    public void setNameState(String nameState) {
-        this.nameState = nameState;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
     public String getDescription() {
@@ -41,6 +36,12 @@ public class State {
     }
 
     public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public State(int code, String Name, String description) {
+        this.code = code;
+        this.Name = Name;
         this.description = description;
     }
     
