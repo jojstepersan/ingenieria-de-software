@@ -14,6 +14,7 @@ ape_cliente varchar(60)
 ); 
 
 -- tabla pais
+
 create table pais(
 cod_pais int primary key auto_increment,
 nom_pais varchar(100),
@@ -104,14 +105,12 @@ pass varchar(200),
 constraint tipo_empleado2_fk foreign key (cod_tipo_empleado) references tipo_empleado(cod_tipo_empleado)   
 );
 
-
 insert into tipo_empleado values(1,'capitan');
 insert into tipo_empleado values(2,'tripulante');
 insert into tipo_empleado values(3,'usuario');
 
 insert into estado values(1,'Listo','Listo para salir');
 insert into barco values(1,1,'2017-09-08','2017-09-08');
-
 -- tabla itinerario
 -- create table itinerario(
 -- cod_itinerario int primary key,

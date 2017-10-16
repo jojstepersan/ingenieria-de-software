@@ -64,6 +64,7 @@ public class DeletedCaptainServlet extends HttpServlet {
        DAOCrewmanImpl dcrewman=new DAOCrewmanImpl();
         try {
             dcrewman.delete(id);
+
         } catch (SQLException ex) {
             System.out.println("No se puede borrar el capitan"); }
         processRequest(request, response);}

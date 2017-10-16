@@ -5,9 +5,6 @@
  */package dao;
 
 
-import Data.Crewman;
-import Data.Ship;
-import Data.State;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.Date;
@@ -46,5 +43,4 @@ public class ConnectionDB{
                 System.out.println("recuerde que la contraseñña es: 12345 y es user root");
                 }
         }
-  
 }

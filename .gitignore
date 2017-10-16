@@ -3,8 +3,12 @@
 /TIHC/nbproject/private/
 /test/nbproject/private/
 /test/build/
+<<<<<<< HEAD
 /TIHC/build/
 /TIHC/dist/
+=======
+/TIHC/build/
+>>>>>>> Login's_Branch
 =======
 <<<<<<< HEAD
 /TIHC/nbproject/private/
@@ -16,4 +20,8 @@
 /TIHC/build/
 /TIHC/dist/
 >>>>>>> fde378f94f3d0c4120af0e089485b5b5822eaf4a
+<<<<<<< HEAD
 >>>>>>> Juan´s_Branch
+=======
+>>>>>>> Valentina's_Branch
+>>>>>>> Login's_Branch

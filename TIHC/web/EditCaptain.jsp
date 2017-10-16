@@ -13,7 +13,8 @@
     </head>
     <body>
         <h1>Edit Captain</h1>
-        <form action="EditPortServlet" method="POST">
+
+        <form action="EditCaptainServlet" method="POST">
             <div>Enter the number of the captain you want to edit </div>
               <input  type="number" name="numEditCaptain">
               <input name="Editar" type="submit" value="Editar">
