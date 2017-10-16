@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
-
-import java.sql.SQLException;
+package Data;
 
 /**
  *
- * @author Valentina
+ * @author jojstepersan
  */
-public class Test {
+public class Admin  extends User{
     
-    public static void main(String[] args) throws SQLException {
-      ConnectionDB cin=new ConnectionDB();
-    }
 }

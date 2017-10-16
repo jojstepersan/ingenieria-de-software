@@ -5,20 +5,12 @@
  */
 package dao;
 
-
-import Data.Crewman;
-import Data.Ship;
-import Data.State;
 import java.sql.Statement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -36,7 +28,7 @@ public class ConnectionDB{
           try
             {
             Class.forName("com.mysql.jdbc.Driver");
-            conexion=DriverManager.getConnection("jdbc:mysql://localhost/tihc?user=root&password=1234");
+            conexion=DriverManager.getConnection("jdbc:mysql://localhost/tihc?user=root&password=12345");
             statement=conexion.createStatement();    
             }catch(ClassNotFoundException e)
                 {
@@ -47,4 +39,5 @@ public class ConnectionDB{
                 System.out.println("recuerde que la contraseñña es: 12345 y es user root");
                 }
         }
+    
 }

@@ -13,6 +13,7 @@ ape_cliente varchar(60)
 ); 
 
 -- tabla pais
+
 create table pais(
 cod_pais int primary key,
 nom_pais varchar(100),
