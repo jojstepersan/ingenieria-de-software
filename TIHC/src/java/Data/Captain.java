@@ -18,5 +18,9 @@ public class Captain extends Crewman{
     public Captain(int id, String name, String lastName,Ship ship) {
         super(id, name, lastName,ship);
     }
+
+    public Captain() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

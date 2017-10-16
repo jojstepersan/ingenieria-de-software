@@ -38,6 +38,5 @@ public class Test {
 //            
 //        }
 
-        System.out.println(d.getCrewman(15));
     }
 }

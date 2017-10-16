@@ -15,7 +15,9 @@
         <h1>Deleted Captain</h1>
       
         <section>
+
             <form action="DeletedCaptainServlet" method="post">
+
                 <input type="number" placeholder="Number ID" name="id">
                         
                 <button type="submit">Deleted</button>

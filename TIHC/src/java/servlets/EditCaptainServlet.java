@@ -6,12 +6,11 @@
 package servlets;
 
 import Data.Captain;
+import Data.Ship;
 import dao.DAOCrewmanImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Valentina
  */
-@WebServlet(name = "DeletedCaptainServlet", urlPatterns = {"/DeletedCaptainServlet"})
-public class DeletedCaptainServlet extends HttpServlet {
+@WebServlet(name = "EditCaptainServlet", urlPatterns = {"/EditCaptainServlet"})
+public class EditCaptainServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,54 +36,54 @@ public class DeletedCaptainServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.sendRedirect("CrudCaptain.jsp");
+           response.sendRedirect("CrudCaptain.jsp");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeletedCaptainServlet</title>");            
+            out.println("<title>Servlet EditCapainServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeletedCaptainServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditCapainServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-            int id=Integer.valueOf(request.getParameter("Id"));
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
         try {
-            
-            DAOCrewmanImpl dao=new DAOCrewmanImpl();
-            dao.delete(id);
-            System.out.println("borrado");
+            System.out.println("llll");
+            String name = request.getParameter("name");
+            System.out.println("name" + name);
+            int id = Integer.valueOf(request.getParameter("id"));
+            System.out.println("id"+id);
+            String lastName = String.valueOf(request.getParameter("lastName"));
+            System.out.println("lastName:"+lastName);
+            Ship ship = new Ship();
+            int code = Integer.valueOf(request.getParameter("ship"));
+            System.out.println("code"+code);
+            ship.setCodeShip(code);
+            Captain cap = new Captain();
+            cap.setName(name);
+            cap.setId(id);
+            cap.setLastName(lastName);
+            cap.setShip(ship);
+            System.out.println("Barco" + ship);
+            DAOCrewmanImpl daoCaptain = new DAOCrewmanImpl();
+            daoCaptain.edit(cap);
+            processRequest(request, response);
         } catch (SQLException ex) {
-            System.out.println("no se encontro");  }
+                
+            System.out.println("No se pudo editar ");
             
-            
-        processRequest(request, response);
+                    
+        } 
     }
 
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        Integer id  = Integer.valueOf(request.getParameter("id"));
-//        String name = request.getParameter("nameCaptain");
-//        String lasName = request.getParameter("lastNameCaptain");
-//        
-//        Captain captain = new Captain(id, name, lasName);
-//
-//       DAOCrewmanImpl dcrewman=new DAOCrewmanImpl();
-//        try {
-//
-//            dcrewman.delete(id);
-//        } catch (SQLException ex) {
-//            System.out.println("No se puede borrar el capitan"); }
-//        processRequest(request, response);}
-
-    
     @Override
     public String getServletInfo() {
         return "Short description";
