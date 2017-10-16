@@ -5,8 +5,13 @@
  */
 package servlets;
 
+import Data.Crewman;
+import dao.DAOCrewmanImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -71,9 +76,19 @@ public class CreateCrewmanServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int id  = Integer.valueOf(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String lasName = request.getParameter("lastName");
+        Crewman cre = new Crewman(id, name, lasName);
+        DAOCrewmanImpl dcrewman=new DAOCrewmanImpl();
+        System.out.printf("name:%s lastname:%s cod %d\n",name,lasName,id);
+        try {
+            dcrewman.create(cre);
+        } catch (SQLException ex) {
+            System.out.println("no se pudo crear el capitan :("); 
+        }
         processRequest(request, response);
     }
 
