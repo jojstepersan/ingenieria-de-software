@@ -17,7 +17,7 @@ public class Hash {
 public static String resumen;
 
 
-        public static String hash (String mensaje){ 
+        public static String hash(String mensaje){ 
         String sumar = "comeymecuetas";
         
         String cifrar = mensaje+sumar;

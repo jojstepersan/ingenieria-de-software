@@ -1,9 +1,15 @@
 package servlets;
 
+import Data.Admin;
+import Data.User;
 import dao.ConnectionDB;
+import dao.DAOUserImpl;
 import entities.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,43 +28,36 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         RequestDispatcher dispacher = request.getRequestDispatcher("index.jsp");
         dispacher.forward(request, response);
-
-    }       public static String comparar;
-            Usuario us = new Usuario();
-
+        } 
+   
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+            User user=null;
+       try {
+           String usuario= request.getParameter("user");
+           String password=request.getParameter("password");
+           DAOUserImpl dao=new DAOUserImpl();
+           System.out.println("Usuario: "+ usuario + " password: "+ password);
+           user=dao.login(usuario, password);
+           System.out.println("todo bien");
+           if(user!=null)
+            {
+            HttpSession sesion = request.getSession();      
+            sesion.setAttribute("usuario",user.getName());
+            sesion.setAttribute("tipo",user instanceof Admin?4:3);
+            sesion.setAttribute("id", user.getId());
+            sesion.setAttribute("username", user.getUsername());
+            sesion.setAttribute("lastname", user.getLastName());
+            sesion.setAttribute("pass", user.getPass());
+            response.sendRedirect("Index.jsp");
+            }
+       } catch (SQLException ex) {
+            System.out.println("sorry paila el login, llorelo");
+            response.sendRedirect("Login.jsp");
+           }
+        
+        
       
-
-        ConnectionDB con = new ConnectionDB();
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out= response.getWriter();
-        request.getRequestDispatcher("login.jsp").include(request, response);
-        String usuario= request.getParameter("user");
-        String password=request.getParameter("password");
-        comparar = dao.Hash.hash(password);
-        //System.out.println(name+":"+password+":"+comparar);
-        
-      //  String res = con.buscarUsuarios(usuario, comparar);
-        //System.out.println(res);
-        
-              
-        /*
-            if(res.equals("true")){
-            HttpSession actual=request.getSession(true);
-           actual.setAttribute("logueado",usuario); 
-           int tipo = con.buscarTipoUsuario(usuario);
-           actual.setAttribute("tipoUsuario", tipo);
-           int idU = con.buscarIdU(usuario);
-           actual.setAttribute("idU", idU);
-                System.out.println("------>"+tipo);
-            response.sendRedirect("index.jsp");
-        }else{
-            out.println("<h1>El Usuario o la contraseña incorrectos<h1>");  
-        response.sendRedirect("login.jsp");
-        }
-        out.close();*/
     }
    
 }

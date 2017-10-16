@@ -18,6 +18,15 @@ public class User {
     private String lastName;
     private String username;
 
+    public User(int id, int tipoEmpleado, String name, String pass, String lastName, String username) {
+        this.id = id;
+        this.tipoEmpleado = tipoEmpleado;
+        this.name = name;
+        this.pass = pass;
+        this.lastName = lastName;
+        this.username = username;
+    }
+    public User(){}
     public int getTipoEmpleado() {
         return tipoEmpleado;
     }
