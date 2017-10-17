@@ -2,15 +2,9 @@ package servlets;
 
 import Data.Admin;
 import Data.User;
-import dao.ConnectionDB;
 import dao.DAOUserImpl;
-import entities.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,9 +19,7 @@ public class LoginServlet extends HttpServlet {
    
    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        RequestDispatcher dispacher = request.getRequestDispatcher("index.jsp");
-        dispacher.forward(request, response);
+       response.sendRedirect("Index.jsp");
         } 
    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -37,9 +29,7 @@ public class LoginServlet extends HttpServlet {
            String usuario= request.getParameter("user");
            String password=request.getParameter("password");
            DAOUserImpl dao=new DAOUserImpl();
-           System.out.println("Usuario: "+ usuario + " password: "+ password);
            user=dao.login(usuario, password);
-           System.out.println("todo bien");
            if(user!=null)
             {
             HttpSession sesion = request.getSession();      
@@ -51,6 +41,8 @@ public class LoginServlet extends HttpServlet {
             sesion.setAttribute("pass", user.getPass());
             response.sendRedirect("Index.jsp");
             }
+           else
+               throw new  SQLException();
        } catch (SQLException ex) {
             System.out.println("sorry paila el login, llorelo");
             response.sendRedirect("Login.jsp");

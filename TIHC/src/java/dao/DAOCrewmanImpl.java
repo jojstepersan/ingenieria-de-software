@@ -7,13 +7,10 @@ package dao;
 
 import Data.Captain;
 import Data.Crewman;
-import Data.Ship;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import interfaces.DAOCrud;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -103,13 +100,6 @@ public class DAOCrewmanImpl extends ConnectionDB implements DAOCrud{
         return crewman;
         }
     
-    
-    public static void main(String[] args) {
-        DAOCrewmanImpl dao=new DAOCrewmanImpl();
-        try {
-            dao.read();
-        } catch (SQLException ex) {
-            System.out.println("no se pudo");}
-    }
+
     
 }

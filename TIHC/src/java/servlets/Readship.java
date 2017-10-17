@@ -10,7 +10,6 @@ import dao.DAOShipImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,45 +39,49 @@ public class Readship extends HttpServlet {
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            DAOShipImpl dao= new DAOShipImpl();
-            List barcos= dao.read();
+            DAOShipImpl dao = new DAOShipImpl();
+            List barcos = dao.read();
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<style> table, th, td {border: 1px solid black;}</style>");
-            out.println("<title>Servlet Readship</title>");            
+            out.println("<title>Servlet Readship</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Lista de Barcos</h1>");
             out.println("<table style='width:100%'>");
             out.println("<tr>");
             out.println("<th>Codigo barco</th>");
-            out.println("<th>Estado</th>"); 
+            out.println("<th>Name Ship</th>");
+            out.println("<th>weight</th>");
+            out.println("<th>Estado</th>");
             out.println("<th>Fecha Adquisicion</th>");
             out.println("<th>Fecha Manteminmiento</th>");
-            out.println("<th>Accion</th>"); 
+            out.println("<th>Accion</th>");
             out.println("</tr>");
-            for(int i=0;i<barcos.size();i++){
-            Ship aux=(Ship)barcos.get(i);
-            out.println("<tr>");
-            out.println("<td>"+aux.getCodeShip()+"</td>");
-            out.println("<td>"+dao.state_text(aux.getState())+"</td>");
-            out.println("<td>"+aux.getDateAcquisition()+"</td>");
-            out.println("<td>"+aux.getDateOfLastMaintenance()+"</td>");
-            out.println("<td><form action=\"UpdateShip.jsp\" method=\"post\">");
-            out.println("<input type=\"hidden\" value=\""+aux.getCodeShip()+"\" name=\"cod\" />");
-            out.println("<button type=\"submit\">Actualizar</button>");
-            out.println("</form></td>");
-            
-            out.println("<td><form action=\"DeleteShip\" method=\"post\">");
-            out.println("<input type=\"hidden\" value=\""+aux.getCodeShip()+"\" name=\"cod\" />");
-            out.println("<button type=\"submit\">Borrar</button>");
-            out.println("</form></td>");
-            out.println("</tr>");    
+            for (int i = 0; i < barcos.size(); i++) {
+                Ship aux = (Ship) barcos.get(i);
+                out.println("<tr>");
+                out.println("<td>" + aux.getCodeShip() + "</td>");
+                out.println("<td>" + aux.getName() + "</td>");
+                out.println("<td>" + aux.getWeight() + "</td>");
+                out.println("<td>" + dao.state_text(aux.getState()) + "</td>");
+                out.println("<td>" + aux.getDateAcquisition() + "</td>");
+                out.println("<td>" + aux.getDateOfLastMaintenance() + "</td>");
+                out.println("<td><form action=\"UpdateShip.jsp\" method=\"post\">");
+                out.println("<input type=\"hidden\" value=\"" + aux.getCodeShip() + "\" name=\"cod\" />");
+                out.println("<button type=\"submit\">Actualizar</button>");
+                out.println("</form></td>");
+                out.println("<td><form action=\"DeleteShip\" method=\"post\">");
+                out.println("<input type=\"hidden\" value=\"" + aux.getCodeShip() + "\" name=\"cod\" />");
+                out.println("<button type=\"submit\">Borrar</button>");
+                out.println("</form></td>");
+                out.println("</tr>");
             }
             dao.cerrar();
             out.println("</table>");
+            out.println("<a href=\"CreateShip.jsp\">Add ship</a>");
             out.println("</body>");
             out.println("</html>");
         }

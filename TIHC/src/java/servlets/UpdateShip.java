@@ -9,11 +9,7 @@ import Data.Ship;
 import dao.DAOShipImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -78,6 +74,7 @@ public class UpdateShip extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -85,13 +82,10 @@ public class UpdateShip extends HttpServlet {
             int codBarco = Integer.parseInt(request.getParameter("cod"));
             int state = Integer.parseInt(request.getParameter("state"));
             String dateac = request.getParameter("dateac");
-            String datema = request.getParameter("datema");           
-
-
-            
-            Ship barcoup = new Ship(codBarco,dateac,datema,state);
+            String datema = request.getParameter("datema");   
+            int weight=Integer.valueOf(request.getParameter("weight"));
+            Ship barcoup = new Ship(codBarco,request.getParameter("name"),dateac,datema,weight,state);
             DAOShipImpl dao= new DAOShipImpl();
-        
             dao.edit(barcoup);
             response.sendRedirect("Readship");
         } catch (SQLException ex) {

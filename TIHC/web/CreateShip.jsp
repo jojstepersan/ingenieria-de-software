@@ -25,6 +25,9 @@
         <div>
         <label for="name">Name ship:</label>
         <input type="text" name="name" />
+        <br
+        <label for="name">Weight ship:</label>
+        <input type="number" name="weight" />
     </div>    <div>
         <label for="mail">estado :</label>
          <select name="state">

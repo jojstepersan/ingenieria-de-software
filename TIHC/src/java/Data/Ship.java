@@ -8,21 +8,24 @@ public class Ship {
     private String name;
     private String dateAcquisition;
     private String dateOfLastMaintenance;
+    private int weight;
     private int state;
 
-    public Ship(int codeShip, String name, String dateAcquisition, String dateOfLastMaintenance, int state) {
+    public Ship(int codeShip, String name, String dateAcquisition, String dateOfLastMaintenance, int weight, int state) {
         this.codeShip = codeShip;
         this.name = name;
         this.dateAcquisition = dateAcquisition;
         this.dateOfLastMaintenance = dateOfLastMaintenance;
+        this.weight = weight;
         this.state = state;
     }
 
-    public Ship(int codeShip, String name, String dateAcquisition, int state) {
-        this.codeShip = codeShip;
-        this.name = name;
-        this.dateAcquisition = dateAcquisition;
-        this.state = state;
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
     
  public Ship(){}

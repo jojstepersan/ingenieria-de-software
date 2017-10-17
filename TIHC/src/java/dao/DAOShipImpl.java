@@ -34,12 +34,13 @@ public class DAOShipImpl extends ConnectionDB implements DAOCrud {
     @Override
     public void create(Object ob) throws SQLException {
         Ship ship = (Ship)ob;
-        insert=conexion.prepareStatement("INSERT INTO barco(cod_barco,nom_barco,cod_estado,fecha_adquisicion,fecha_ultimo_mantenimiento)  VALUES(?,?,?,?,?);");
+        insert=conexion.prepareStatement("INSERT INTO barco(cod_barco,nom_barco,cod_estado,fecha_adquisicion,fecha_ultimo_mantenimiento,peso)  VALUES(?,?,?,?,?,?);");
         insert.setInt(1, ship.getCodeShip());
         insert.setString(2,ship.getName());
         insert.setInt(3, ship.getState());
         insert.setString(4,ship.getDateAcquisition());
         insert.setString(5,ship.getDateOfLastMaintenance());
+       insert.setInt(6, ship.getWeight());
         insert.executeUpdate();
         conexion.close();
     }
@@ -74,8 +75,7 @@ public class DAOShipImpl extends ConnectionDB implements DAOCrud {
         read = insert.executeQuery();
         while(read.next()){
             Ship ship;
-            ship = new Ship(read.getInt("cod_barco"),read.getString(2), read.getString("fecha_adquisicion"), read.getString("fecha_ultimo_mantenimiento"),read.getInt("cod_estado"));
-               System.out.println(ship.getName());
+            ship = new Ship(read.getInt("cod_barco"),read.getString(2),read.getString("fecha_adquisicion"), read.getString("fecha_ultimo_mantenimiento"),read.getInt(3),read.getInt("cod_estado"));
             listShip.add(ship);
             }
    
@@ -121,7 +121,7 @@ public class DAOShipImpl extends ConnectionDB implements DAOCrud {
         insert.setString(1, name);
         read = insert.executeQuery();
         while(read.next())
-             ship=new Ship(read.getInt(1),read.getString(2),read.getString(4),read.getString(5),read.getInt(3));
+             ship=new Ship(read.getInt(1),read.getString(2),read.getString(5),read.getString(6),read.getInt(3),read.getInt(4));
         conexion.close();
         return ship;
         } 
@@ -134,7 +134,7 @@ public class DAOShipImpl extends ConnectionDB implements DAOCrud {
         insert.setInt(1, id);
         read = insert.executeQuery();
         while(read.next())
-             ship=new Ship(read.getInt(1),read.getString(2),read.getString(4),read.getString(5),read.getInt(3));
+             ship=new Ship(read.getInt(1),read.getString(2),read.getString(5),read.getString(6),read.getInt(3),read.getInt(4));
         conexion.close();
         return ship;
         } 

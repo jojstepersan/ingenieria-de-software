@@ -73,6 +73,7 @@ public class DAOUserImpl extends ConnectionDB implements DAOCrud {
         conexion.close();
         return listUsers;
     }
+   
     public User login(String username,String pass)throws SQLException
         {
         insert=conexion.prepareStatement("select * FROM USUARIO where username=? and pass=?");
@@ -90,10 +91,5 @@ public class DAOUserImpl extends ConnectionDB implements DAOCrud {
             }    
         return user;
         }
-    
-    public static void main(String[] args) throws SQLException {
-        DAOUserImpl dao=new DAOUserImpl();
-      dao.login("stiven", "12345");
-    }
     
 }

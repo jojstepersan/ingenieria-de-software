@@ -84,7 +84,8 @@ public class CreateShip extends HttpServlet {
             String name=request.getParameter("name");
             String dateac = request.getParameter("dateac");
             String datema = request.getParameter("datema");           /*convierte string en fecha*/
-            Ship barco = new Ship(codBarco,name,dateac,datema,state);
+            int weight=Integer.valueOf(request.getParameter("weight"));
+            Ship barco = new Ship(codBarco,name,dateac,datema,weight,state);
             dao.create(barco);
             response.sendRedirect("Readship");
 

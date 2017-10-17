@@ -24,9 +24,15 @@
             String value = request.getParameter("cod");       
             out.println("<input type=\"text\" name=\"cod\" readonly=\"readonly\" value=\""+value+"\"/>");
          %>
+         <br>
+         <label for="msg">Name:</label>
+         <input type="text" name="name" s/> <br>
+         <label for="msg">Weight:</label>
+         <input type="number" name="weight" s/>
     </div>
     <div>
         <label for="mail">estado :</label>
+        
         <select name="state">
         <%
            DAOShipImpl dao= new DAOShipImpl();

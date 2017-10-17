@@ -13,13 +13,12 @@
     </head>
     <body>
         <h1>TIHC</h1>
-        
-
         <h1>Crud's</h1>
         <a href="Login.jsp">Login</a>  <br>    
         <a href="CrudCrewman.jsp">Crud Tripulacion</a>  <br>   
         <a href="CrudCountry.jsp">Crud Country</a>  <br>   
-        
+        <a href="Readship">Crud ship</a><br>   
+        <a href="CrudPort.jsp">Crud port</a> <br>
     </body>
     
 </html>

@@ -5,13 +5,9 @@
  */
 package servlets;
 
-import Data.Port;
 import dao.DAOportsImpl;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,20 +32,8 @@ public class DeletePort extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet DeletePort</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet DeletePort at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        response.sendRedirect("CrudPort.jsp");
         }
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -63,6 +47,18 @@ public class DeletePort extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        DAOportsImpl dport=new DAOportsImpl();
+        
+        int id  = Integer.valueOf(request.getParameter("Id"));
+        System.out.println("id "+id);
+        System.out.println(" aqui estoy papu");
+        try {
+            dport.delete(id);
+        } catch (SQLException ex) {
+            System.out.println("no se pudo borrar el puerto");
+        
+        }
+        
         processRequest(request, response);
     }
 
@@ -77,17 +73,7 @@ public class DeletePort extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        DAOportsImpl dport=new DAOportsImpl();
         
-        int id  = Integer.valueOf(request.getParameter("id"));
-        Port port;
-        try {
-            dport.delete(id);
-        } catch (SQLException ex) {
-            Logger.getLogger(DeletePort.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        processRequest(request, response);
         
     }
 

@@ -51,7 +51,7 @@ public class DAOCountryImpl extends ConnectionDB implements DAOCrud{
     public List<Object> read() throws SQLException 
         {
         List<Object> listCrewman = new ArrayList<>();
-        insert=conexion.prepareStatement("select * FROM pais;");
+        insert=conexion.prepareStatement("select * FROM pais order by nom_pais;");
         read = insert.executeQuery();
         while(read.next()){
             Country country=new Country(read.getString(2),read.getInt(1), read.getDouble(3), read.getDouble(4));
