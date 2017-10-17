@@ -80,11 +80,12 @@ public class CreateShipment extends HttpServlet {
         int idShipment = Integer.parseInt(request.getParameter("idShipment"));
         int idContract = Integer.parseInt(request.getParameter("idContract"));
         int idShip = Integer.parseInt(request.getParameter("idShip"));
+        int idShipmentType = Integer.parseInt(request.getParameter("idShipmentType"));
         int weight = Integer.valueOf(request.getParameter("weight"));
         String source=request.getParameter("source");
         String destination=request.getParameter("destination");
         String description=request.getParameter("description");
-        Shipment carga = new Shipment(idShipment, idContract, idShip, weight, source, destination, description);
+        Shipment carga = new Shipment(idShipment, idContract, idShip, idShipmentType, weight, source, destination, description);
         dao.create(carga);
         response.sendRedirect("Readshipment");
     }

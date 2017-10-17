@@ -13,19 +13,23 @@ public class Shipment {
     private int idShipment;
     private int idContract;
     private int idShip;
+    private int idShipmentType;
     private int weight;
     private String source;
     private String destination;
     private String description; 
-    public Shipment(int idShipment, int idContract, int idShip, int weight, String source, String destination, String description) {
+
+    public Shipment(int idShipment, int idContract, int idShip, int idShipmentType, int weight, String source, String destination, String description) {
         this.idShipment = idShipment;
         this.idContract = idContract;
         this.idShip = idShip;
+        this.idShipmentType = idShipmentType;
         this.weight = weight;
         this.source = source;
         this.destination = destination;
         this.description = description;
     }
+
     public int getIdShipment() {
         return idShipment;
     }
@@ -48,6 +52,14 @@ public class Shipment {
 
     public void setIdShip(int idShip) {
         this.idShip = idShip;
+    }
+
+    public int getIdShipmentType() {
+        return idShipmentType;
+    }
+
+    public void setIdShipmentType(int idShipmentType) {
+        this.idShipmentType = idShipmentType;
     }
 
     public int getWeight() {
@@ -81,6 +93,8 @@ public class Shipment {
     public void setDescription(String description) {
         this.description = description;
     }
+    
+    
     
     
 }
