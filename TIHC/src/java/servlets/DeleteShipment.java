@@ -5,8 +5,10 @@
  */
 package servlets;
 
+import Data.*;
+import dao.DAOShipmentImpl;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,19 +33,7 @@ public class DeleteShipment extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet DeleteShipment</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet DeleteShipment at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        response.sendRedirect("Readshipment");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,7 +62,15 @@ public class DeleteShipment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            int idShipment = Integer.parseInt(request.getParameter("idShipment"));
+            DAOShipmentImpl dao= new DAOShipmentImpl();
+        try {
+            
+            dao.delete(idShipment);
+            response.sendRedirect("Readshipment");
+        } catch (SQLException ex) {
+             response.sendRedirect("Readshipment");
+        }
     }
 
     /**
