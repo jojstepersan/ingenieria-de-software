@@ -10,8 +10,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%DAOShipmentImpl shipment2=new DAOShipmentImpl();
+    try{
   List<Object> listShipment=shipment2.read();
   request.setAttribute("shipment", listShipment);
+  }catch(Exception e){}
 %>
 <html>
     <head>

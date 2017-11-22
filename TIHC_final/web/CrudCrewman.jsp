@@ -14,9 +14,14 @@
 <html>
      <%
         DAOCrewmanImpl daocrewman = new DAOCrewmanImpl();
-        List<Object> listCrewman= daocrewman.read();            
-        request.setAttribute("crewmans", listCrewman);%>
-    <head>
+        try{
+        List<Object> listCrewman= daocrewman.read();
+        request.setAttribute("crewmans", listCrewman);
+    
+        }catch(Exception e){}
+        
+    %>
+        <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>

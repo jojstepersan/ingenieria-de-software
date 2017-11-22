@@ -12,8 +12,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%DAOportsImpl dao=new DAOportsImpl();
+try{
   List<Object> listPorts=dao.read();
-  request.setAttribute("ports", listPorts);
+  request.setAttribute("ports", listPorts);}catch(Exception e){}
 %>
 <html>
     <head>

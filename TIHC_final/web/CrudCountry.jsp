@@ -10,8 +10,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%DAOCountryImpl country2=new DAOCountryImpl();
+    try{
   List<Object> listCountry=country2.read();
-  request.setAttribute("country", listCountry);
+  request.setAttribute("country", listCountry);}catch(Exception e){}
 %>
 <html>
     <head>
