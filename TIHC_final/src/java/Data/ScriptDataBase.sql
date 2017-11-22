@@ -1,5 +1,6 @@
 -- username: root
 -- pass: 12345
+
 drop database TIHC;
 
 create database TIHC;
@@ -62,7 +63,7 @@ nom_barco varchar(100),
 peso int,
 cod_estado int,
 ubicacion_x double,
-ubicaion_y double,
+ubicacion_y double,
 fecha_adquisicion date,
 fecha_ultimo_mantenimiento date,
 constraint estado_fk foreign key(cod_estado) references estado(cod_estado)

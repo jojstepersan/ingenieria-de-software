@@ -90,7 +90,7 @@ public class DAOShipImpl extends ConnectionDB implements DAOCrud {
     
    public String state_text (int cod) throws SQLException{
        String nom = "";
-       insert=conexion.prepareStatement("select nom_estado FROM ESTADO WHERE cod_estado=?");
+       insert=conexion.prepareStatement("select nom_estado FROM estado WHERE cod_estado=?");
         insert.setInt(1,cod);
         read = insert.executeQuery();
         while(read.next()){

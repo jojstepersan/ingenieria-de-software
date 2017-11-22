@@ -10,15 +10,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>TIHC</title>
+        
+    
     </head>
     <body>
-        <h1>TIHC</h1>
-        <h1>Crud's</h1>
-        <a href="Login.jsp">Login</a>  <br>    
-        <a href="CrudCrewman.jsp">Crud Tripulacion</a>  <br>   
-        <a href="CrudCountry.jsp">Crud Country</a>  <br>   
-        <a href="Readship">Crud ship</a><br>   
-        <a href="CrudPort.jsp">Crud port</a> <br>
+        <div class="nav">
+            <a href="Login.jsp">Login</a>  
+            <a href="CrudCrewman.jsp">Crud Tripulacion</a>     
+            <a href="CrudCountry.jsp">Crud Country</a>    
+            <a href="CrudShip.jsp">Crud ship</a>   
+            <a href="CrudPort.jsp">Crud port</a> 
+        </div>
     </body>
     
 </html>

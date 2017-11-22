@@ -10,15 +10,17 @@
 <%@page import="java.util.List"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%
         DAOShipImpl daoShip = new DAOShipImpl();
         try{
         List listShips= daoShip.read();
         request.setAttribute("ship", listShips);
-    
+        System.out.println("copas");
         }catch(Exception e){}
         
     %>
+    
             <html>
             <head>
             <style> table, th, td {border: 1px solid black;}</style>
