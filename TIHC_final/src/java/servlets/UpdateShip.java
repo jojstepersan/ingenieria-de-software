@@ -64,6 +64,7 @@ public class UpdateShip extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        response.sendRedirect("CrudShip.jsp");
     }
 
     /**
@@ -87,7 +88,7 @@ public class UpdateShip extends HttpServlet {
             Ship barcoup = new Ship(codBarco,request.getParameter("name"),dateac,datema,weight,state);
             DAOShipImpl dao= new DAOShipImpl();
             dao.edit(barcoup);
-            response.sendRedirect("Readship");
+            response.sendRedirect("CrudShip.jsp");
         } catch (SQLException ex) {
             Logger.getLogger(DeleteShip.class.getName()).log(Level.SEVERE, null, ex);
         }

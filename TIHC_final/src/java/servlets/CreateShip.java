@@ -87,7 +87,7 @@ public class CreateShip extends HttpServlet {
             int weight=Integer.valueOf(request.getParameter("weight"));
             Ship barco = new Ship(codBarco,name,dateac,datema,weight,state);
             dao.create(barco);
-            response.sendRedirect("Readship");
+            response.sendRedirect("CrudShip.jsp");
 
         } catch (SQLException ex) {
             Logger.getLogger(CreateShip.class.getName()).log(Level.SEVERE, null, ex);

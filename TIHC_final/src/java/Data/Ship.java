@@ -1,4 +1,8 @@
 package Data;
+
+import dao.DAOShipImpl;
+import java.sql.SQLException;
+
 /**
  *
  * @author Kevin
@@ -86,6 +90,11 @@ public class Ship {
     public void setState(int state) {
         this.state = state;
     }
+    public String state_text (int cod) throws SQLException{
+      DAOShipImpl dao = new DAOShipImpl();
+       String nom =dao.state_text(cod);
+       return nom;     
+   }
     
     
 }

@@ -83,6 +83,7 @@ public class DAOShipImpl extends ConnectionDB implements DAOCrud {
             ship.setY(read.getDouble("ubicacion_Y"));
             listShip.add(ship);
             }
+        conexion.close();
    
         return listShip;
     }

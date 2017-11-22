@@ -33,7 +33,7 @@ public class DeleteShip extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("Readship");
+            response.sendRedirect("CrudShip.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,9 +67,9 @@ public class DeleteShip extends HttpServlet {
         try {
             
             dao.delete(codBarco);
-            response.sendRedirect("Readship");
+            response.sendRedirect("CrudShip.jsp");
         } catch (SQLException ex) {
-             response.sendRedirect("Readship");
+            response.sendRedirect("CrudShip.jsp");
         }
     }
 
