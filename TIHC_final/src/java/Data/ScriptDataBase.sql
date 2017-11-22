@@ -61,6 +61,8 @@ cod_barco int primary key,
 nom_barco varchar(100),
 peso int,
 cod_estado int,
+ubicacion_x double,
+ubicaion_y double,
 fecha_adquisicion date,
 fecha_ultimo_mantenimiento date,
 constraint estado_fk foreign key(cod_estado) references estado(cod_estado)
@@ -113,7 +115,7 @@ insert into tipo_empleado values(3,'usuario');
 insert into tipo_empleado values(4,'admin');
 
 insert into estado values(1,'Listo','Listo para salir');
-insert into barco values(1,'el perla negra',100,1,'2017-09-08','2017-09-08');
+insert into barco values(1,'el perla negra',100,1,0.0,0.0,'2017-09-08','2017-09-08');
 
 -- tabla itinerario
 -- create table itinerario(
@@ -160,8 +162,6 @@ insert into pais(cod_pais,nom_pais) values(33,'Durban');
 insert into cliente values(1,'stiven','perdomo');
 
 select* from barco;
-
 select * from usuario;
 select * from tripulante;
 select* from tipo_empleado;
-select * FROM USUARIO where username='marioherrera' and pass='123456789'

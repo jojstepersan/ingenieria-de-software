@@ -10,6 +10,7 @@ public class Ship {
     private String dateOfLastMaintenance;
     private int weight;
     private int state;
+    private double x,y;
 
     public Ship(int codeShip, String name, String dateAcquisition, String dateOfLastMaintenance, int weight, int state) {
         this.codeShip = codeShip;
@@ -18,6 +19,23 @@ public class Ship {
         this.dateOfLastMaintenance = dateOfLastMaintenance;
         this.weight = weight;
         this.state = state;
+        x=y=0;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
     }
 
     public int getWeight() {

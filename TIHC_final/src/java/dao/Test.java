@@ -5,6 +5,8 @@
  */
 package dao;
 
+import java.sql.SQLException;
+
 
 
 /**
@@ -12,8 +14,10 @@ package dao;
  * @author Valentina
  */
 public class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         ConnectionDB c=new ConnectionDB();
+        DAOShipImpl barco=new DAOShipImpl();
+        barco.read();
     }
     
 }

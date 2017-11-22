@@ -26,7 +26,8 @@ public class DAOShipmentImpl extends ConnectionDB implements DAOCrud {
         Shipment shipment = (Shipment)ob;
         insert=conexion.prepareStatement("INSERT INTO carga(cod_carga, cod_contrato, cod_barco, cod_tipo_carga, peso, origen, destino, descripcion)  VALUES(?,?,?,?,?,?,?,?);");
         insert.setInt(1, shipment.getIdShipment());
-        insert.setString(2,shipment.getIdContract());
+        insert.setString(2,shipment.getIdContract()); 
+                
         insert.setInt(3, shipment.getIdShip());
         insert.setString(4,shipment.getIdShipmentType());
         insert.setString(5,shipment.getWeight());

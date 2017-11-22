@@ -49,12 +49,15 @@ public class DAOShipImpl extends ConnectionDB implements DAOCrud {
     public void edit(Object ob) throws SQLException {
         Ship ship = (Ship)ob;
         
-        insert=conexion.prepareStatement("UPDATE barco set cod_estado=? ,fecha_adquisicion=? ,fecha_ultimo_mantenimiento = ?,nom_barco=?   WHERE cod_barco= ?;");
-        insert.setInt(5, ship.getCodeShip());
+        insert=conexion.prepareStatement("UPDATE barco set cod_estado=? ,fecha_adquisicion=? ,fecha_ultimo_mantenimiento = ?,nom_barco=?,ubicacion_x=?,ubicacion_y=?   WHERE cod_barco= ?;");
+        insert.setInt(7, ship.getCodeShip());
         insert.setInt(1, ship.getState());
         insert.setString(2,ship.getDateAcquisition());
         insert.setString(3,ship.getDateOfLastMaintenance());
         insert.setString(4,ship.getName());
+        insert.setDouble(5, ship.getX());
+        insert.setDouble(6, ship.getY());
+    
         insert.executeUpdate();
         conexion.close();
     }
@@ -71,11 +74,13 @@ public class DAOShipImpl extends ConnectionDB implements DAOCrud {
     public List<Object> read() throws SQLException {
         
         List<Object> listShip = new ArrayList<>();
-        insert=conexion.prepareStatement("select * FROM BARCO;");
+        insert=conexion.prepareStatement("select * FROM barco;");
         read = insert.executeQuery();
         while(read.next()){
             Ship ship;
             ship = new Ship(read.getInt("cod_barco"),read.getString(2),read.getString("fecha_adquisicion"), read.getString("fecha_ultimo_mantenimiento"),read.getInt(3),read.getInt("cod_estado"));
+            ship.setX(read.getDouble("ubicacion_x"));
+            ship.setY(read.getDouble("ubicacion_Y"));
             listShip.add(ship);
             }
    
