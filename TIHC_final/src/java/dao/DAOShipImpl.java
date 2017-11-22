@@ -78,6 +78,7 @@ public class DAOShipImpl extends ConnectionDB implements DAOCrud {
             ship = new Ship(read.getInt("cod_barco"),read.getString(2),read.getString("fecha_adquisicion"), read.getString("fecha_ultimo_mantenimiento"),read.getInt(3),read.getInt("cod_estado"));
             listShip.add(ship);
             }
+        conexion.close();
    
         return listShip;
     }

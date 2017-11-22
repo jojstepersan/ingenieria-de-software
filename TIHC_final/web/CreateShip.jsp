@@ -20,17 +20,17 @@
 <form action="CreateShip" method="post">
     <div>
         <label for="name">codigo barco:</label>
-        <input type="text" name="cod" />
+        <input type="text" name="cod" required/>
     </div>
         <div>
         <label for="name">Name ship:</label>
-        <input type="text" name="name" />
+        <input type="text" name="name" required />
         <br
         <label for="name">Weight ship:</label>
-        <input type="number" name="weight" />
+        <input type="number" name="weight" required />
     </div>    <div>
         <label for="mail">estado :</label>
-         <select name="state">
+         <select name="state" required>
         <%
            DAOShipImpl dao= new DAOShipImpl();
            List estados=dao.StateList();
@@ -45,11 +45,11 @@
     </div>
     <div>
         <label for="msg">fecha aquisicion:</label>
-        <input type="date" name="dateac">
+        <input type="date" name="dateac" required>
     </div>
     <div>
         <label for="msg">fecha manteminiemto:</label>
-        <input type="date" name="datema">
+        <input type="date" name="datema" required>
     </div>
     
     <div class="button">
